@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="drag"></div>
+      <div class="menu">
+        <span class="min">➖</span>
+        <span class="close">✖️</span>
+      </div>
+    </header>
+    <div class="canvas-container">
+      <canvas id="canvas"></canvas>
+    </div>
+    <footer>
+      <div class="audio-list-action" oncontextmenu="openFolder()">展开</div>
+      <div id="waveform"></div>
+    </footer>
+    <ul class="audio-list">
+    </ul>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+
+</html>
