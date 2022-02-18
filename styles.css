@@ -85,12 +85,12 @@ footer{
   align-items: flex-start;
 }
 footer:hover{
-  background-color: rgba(180, 180, 180);
+  background-color: rgba(180, 180, 180,0.2);
 }
 .audio-list-action{
   height: 40px;
   width: 40px;
-  background: rgb(73, 167, 255);
+  background: rgba(180, 180, 180,0.5);
   text-align: center;
   line-height: 40px;
   cursor: pointer;
@@ -101,7 +101,8 @@ footer:hover{
 .audio-list{
   display: none;
   position: fixed;
-  bottom: 40px;
+  padding: 5px 0;
+  bottom: 45px;
   left: 5px;
   max-height: 40vh;
   width: 200px;

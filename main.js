@@ -1,12 +1,14 @@
 const fs = require("fs")
 const path = require("path")
 const { app, autoUpdater, BrowserWindow, ipcMain, dialog } = require('electron')
+if (require('electron-squirrel-startup')) return;
 
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         transparent: true,
+        resizable: false,
         frame: false,
         backgroundColor: "#00000000",
         webPreferences: {
@@ -43,28 +45,17 @@ function createWindow() {
         fs.writeFileSync(path.join(__dirname, arg.name + '.webm'), arg.blob)
     })
 }
-function checkForUpdate(){
-    const server = 'https://github.com/gzwawj/audio-spectrum/'
-    const feed = `${server}/releases/download/${app.getVersion()}/${process.platform}`
-    try {
-        autoUpdater.setFeedURL(feed)
-      } catch (error) {
-        console.error(error)
-      }
-
-    autoUpdater.on("checking-for-update", () => { });
+function checkForUpdate() {
     autoUpdater.on("update-available", info => {
         dialog.showMessageBox({
-            title: "新版本发布",
+            title: "更新提示",
             message: "有新内容更新，稍后将重新为您安装",
             buttons: ["确定"],
             type: "info",
             noLink: true
         });
     });
-    autoUpdater.on("update-downloaded", info => {
-        autoUpdater.quitAndInstall();
-    });
+    require('update-electron-app')()
 }
 
 app.commandLine.appendSwitch("--disable-http-cache");
